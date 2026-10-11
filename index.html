@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeekendBuild — Build your first paid app on weekends</title>
+<meta name="description" content="Practical guides for working developers who want to build a small paid mobile app alongside a full-time job. By Shyju M (@shyju.tech).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121212; --muted:#5b5b6b; --line:#ece6f5;
+  --cream:#fdf7ec; --lilac:#f3ecff; --card:#ffffff;
+  --yellow:#ffe55c; --pink:#ffc9dc; --green:#c8f2cf; --blue:#d6d8ff; --peach:#ffd9b3;
+  --red:#ef1f4b; --navy:#101828; --ok:#22c55e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--ink);line-height:1.6;
+  background:radial-gradient(circle at 90% 0%,#fff3d6 0,transparent 35%),radial-gradient(circle at 0% 40%,#ffe1ec 0,transparent 30%),linear-gradient(170deg,var(--cream),var(--lilac));
+  background-attachment:fixed;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.hand{font-family:Caveat,cursive;font-weight:700}
+.hl{position:relative;display:inline-block;z-index:1;padding:0 .18em}
+.hl::before{content:"";position:absolute;inset:18% -2px 6% -2px;z-index:-1;border-radius:10px 22px 14px 20px;transform:rotate(-1.2deg)}
+.y::before{background:var(--yellow)}.p::before{background:var(--pink)}.g::before{background:var(--green)}.b::before{background:var(--blue)}.o::before{background:var(--peach)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 17px Poppins;padding:15px 26px;border-radius:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 12px 26px rgba(239,31,75,.3)}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+section{padding:72px 0}
+.kicker{font-size:30px;color:#333;margin-bottom:4px}
+h2{font:900 clamp(34px,5vw,54px)/1.1 Poppins;letter-spacing:-1.5px;margin-bottom:18px}
+.lead{font-size:19px;color:var(--muted);max-width:640px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);background:rgba(253,247,236,.75);border-bottom:1px solid rgba(0,0,0,.04)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:900 22px Poppins;letter-spacing:-.5px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo .dot{width:34px;height:34px;border-radius:10px;background:var(--navy);color:var(--yellow);display:grid;place-items:center;font-size:18px}
+.navlinks{display:flex;gap:26px;align-items:center;font-weight:600;font-size:15px}
+.navlinks a{text-decoration:none}
+.navlinks .btn{padding:10px 18px;font-size:15px}
+@media(max-width:760px){.navlinks a:not(.btn){display:none}}
+
+/* hero */
+.hero{padding:56px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font:900 clamp(42px,6.4vw,76px)/1.04 Poppins;letter-spacing:-2.5px}
+.hero .sub{font-size:20px;color:var(--muted);margin:22px 0 30px;max-width:540px}
+.hero .note{font-size:34px;margin-top:4px}
+.underline{display:block;height:14px;margin-top:-4px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.photo-card{position:relative;justify-self:center;width:min(380px,90%)}
+.photo-card .frame{border-radius:32px;overflow:hidden;transform:rotate(2.5deg);box-shadow:0 30px 60px rgba(30,20,60,.22);border:8px solid #fff;background:#fff}
+.photo-card img{aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;width:100%}
+.sticker{position:absolute;background:#fff;border-radius:16px;padding:10px 16px;box-shadow:0 12px 28px rgba(0,0,0,.14);font:800 17px Poppins;white-space:nowrap}
+.sticker small{display:block;font:600 12px Poppins;color:var(--muted)}
+.s1{left:-34px;top:16%;transform:rotate(-5deg);background:var(--yellow)}
+.s2{right:-28px;top:48%;transform:rotate(4deg)}
+.s3{left:-18px;bottom:8%;transform:rotate(-3deg);background:var(--green)}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.photo-card{margin-top:18px}.s1{left:-10px}.s2{right:-10px}.s3{left:-6px}}
+
+/* path strip */
+.path{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
+.step{background:#fff;border-radius:20px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.05);font-weight:700}
+.step .n{font:900 14px Poppins;color:#fff;background:var(--navy);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;margin-bottom:10px}
+.step span{display:block;font-weight:500;font-size:14px;color:var(--muted)}
+@media(max-width:860px){.path{grid-template-columns:1fr 1fr}}
+
+/* kit */
+.kit{background:#fff;border-radius:36px;padding:48px;box-shadow:0 30px 60px rgba(30,20,60,.08);display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.files{display:grid;gap:14px}
+.file{display:flex;gap:16px;align-items:center;background:var(--cream);border-radius:18px;padding:16px 18px}
+.file .ic{font-size:30px;width:54px;height:54px;border-radius:14px;background:#fff;display:grid;place-items:center;flex:none}
+.file b{display:block;font-size:17px}.file span{font-size:14px;color:var(--muted)}
+form.signup{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+form.signup input{flex:1;min-width:220px;font:500 17px Poppins;padding:15px 18px;border-radius:16px;border:2px solid var(--line);background:#fff}
+form.signup input:focus{outline:none;border-color:var(--ink)}
+.formmsg{margin-top:12px;font-size:15px;color:var(--muted);min-height:22px}
+.small{font-size:14px;color:var(--muted)}
+@media(max-width:860px){.kit{grid-template-columns:1fr;padding:30px 22px}}
+
+/* guide */
+.guide{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.book{position:relative;width:min(330px,80%);justify-self:center;aspect-ratio:3/4.2;border-radius:6px 18px 18px 6px;
+  background:linear-gradient(160deg,#101828 0%,#1e2a4a 100%);color:#fff;padding:34px 30px;box-shadow:24px 30px 60px rgba(16,24,40,.35),inset 10px 0 0 rgba(255,255,255,.06);transform:rotate(-3deg)}
+.book::after{content:"";position:absolute;left:14px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.12)}
+.book .tag{font:700 11px Poppins;letter-spacing:2px;color:var(--yellow)}
+.book h3{font:900 34px/1.08 Poppins;margin:16px 0 12px;letter-spacing:-1px}
+.book h3 em{font-style:normal;color:var(--yellow)}
+.book p{font-size:14px;color:#cbd5e1;line-height:1.5}
+.book .by{position:absolute;bottom:28px;left:30px;font:600 14px Poppins;color:#e2e8f0}
+.book .phone{position:absolute;right:22px;bottom:70px;width:74px;height:130px;border-radius:16px;background:#fff;border:5px solid #000;display:grid;place-items:center;font-size:30px}
+.chapters{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin:22px 0 26px}
+.chap{display:flex;gap:12px;align-items:flex-start;font-weight:600;font-size:16px}
+.chap .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:14px;margin-top:2px}
+.stage{grid-column:1/-1;font:700 13px Poppins;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-top:8px}
+.honest{background:var(--yellow);border-radius:4px;padding:20px 24px;transform:rotate(-1deg);box-shadow:0 14px 30px rgba(0,0,0,.1);margin:8px 0 28px}
+.honest .hand{font-size:28px}
+.pack{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.pill{background:#fff;border-radius:30px;padding:8px 16px;font-weight:600;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+.price{font:900 30px Poppins;margin-right:12px}
+@media(max-width:860px){.guide{grid-template-columns:1fr}.chapters{grid-template-columns:1fr}}
+
+/* resources */
+.folders{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+.folder{background:#fff;border-radius:26px;padding:28px;box-shadow:0 10px 26px rgba(0,0,0,.06)}
+.folder .num{font:900 15px Poppins;display:inline-block;padding:4px 12px;border-radius:10px;margin-bottom:12px}
+.folder h3{font:800 22px Poppins;margin-bottom:12px}
+.folder li{list-style:none;padding:8px 0;border-top:1px dashed var(--line);font-size:15px}
+@media(max-width:860px){.folders{grid-template-columns:1fr}}
+
+/* about */
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px;align-items:center}
+.about img{border-radius:28px;aspect-ratio:1;object-fit:cover;object-position:50% 28%;border:8px solid #fff;box-shadow:0 24px 50px rgba(30,20,60,.18);transform:rotate(-2deg)}
+.apps{margin-top:22px;display:grid;gap:8px}
+.app{display:flex;justify-content:space-between;background:#fff;border-radius:14px;padding:12px 16px;font-weight:600;font-size:15px}
+.app .r{color:var(--muted);font-weight:500}.app.win{background:var(--green)}
+@media(max-width:860px){.about{grid-template-columns:1fr}.about img{max-width:300px}}
+
+footer{padding:50px 0 60px;text-align:center;color:var(--muted);font-size:14px}
+footer .links{display:flex;gap:18px;justify-content:center;margin-bottom:12px;font-weight:600;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="dot">⚡</span>WeekendBuild</a>
+    <div class="navlinks">
+      <a href="#kit">Free kit</a>
+      <a href="#guide">The guide</a>
+      <a href="#about">About</a>
+      <a class="btn btn-dark" href="#guide">Get the guide</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Build your first <span class="hl y">paid app</span> on weekends.</h1>
+      <div class="note hand">alongside your full-time job</div>
+      <svg class="underline" width="330" height="14" viewBox="0 0 330 14" aria-hidden="true"><path d="M3 10 C 90 2, 230 2, 327 8" stroke="#ef1f4b" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+      <p class="sub">Small apps. Real users. Honest lessons. Practical guides for working developers who want a second income stream without quitting their job.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="#kit">Get the free starter kit →</a>
+        <a class="btn btn-ghost" href="#guide">See the guide</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="frame"><img src="assets/shyju.jpg" alt="Shyju M, developer and creator of WeekendBuild"></div>
+      <div class="sticker s1">30K+ downloads<small>on my own app</small></div>
+      <div class="sticker s2">11 yrs<small>as a developer</small></div>
+      <div class="sticker s3">Full-time job ✓<small>apps on weekends</small></div>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="kicker hand">the weekend path</div>
+    <h2>Idea → <span class="hl g">paid app</span>, step by step.</h2>
+    <div class="path">
+      <div class="step"><div class="n">1</div>Pick people<span>before features</span></div>
+      <div class="step"><div class="n">2</div>Validate<span>before coding</span></div>
+      <div class="step"><div class="n">3</div>Build with AI<span>without losing control</span></div>
+      <div class="step"><div class="n">4</div>Publish<span>Play Store &amp; App Store</span></div>
+      <div class="step"><div class="n">5</div>First users<span>and first sales</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="kit">
+  <div class="wrap">
+    <div class="kit">
+      <div>
+        <div class="kicker hand">free</div>
+        <h2>The <span class="hl p">Starter Kit</span></h2>
+        <p class="lead">Three short PDFs to help you pick the right first app and start building it with AI.</p>
+        <form class="signup" id="signup" novalidate>
+          <label for="email" class="small" style="width:100%">Your email</label>
+          <input id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn-red" type="submit">Send me the kit</button>
+        </form>
+        <p class="formmsg" id="formmsg" role="status"></p>
+        <p class="small">No spam. Unsubscribe anytime.</p>
+      </div>
+      <div class="files">
+        <div class="file"><div class="ic">🗺️</div><div><b>Build Your First App — 2026 Roadmap</b><span>The full path on one page</span></div></div>
+        <div class="file"><div class="ic">📱</div><div><b>App vs Web</b><span>Which one to build first</span></div></div>
+        <div class="file"><div class="ic">🤖</div><div><b>AI Prompt Pack</b><span>Copy-ready prompts for building apps</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="wrap guide">
+    <div class="book" role="img" aria-label="Book cover: Your First Paid Mobile App">
+      <div class="tag">A PRACTICAL GUIDE FOR WORKING DEVELOPERS</div>
+      <h3>Your First <em>Paid</em> Mobile App</h3>
+      <p>From idea to launch with AI — alongside your full-time job</p>
+      <div class="phone">📱</div>
+      <div class="by">Shyju M · @shyju.tech</div>
+    </div>
+    <div>
+      <div class="kicker hand">the guide</div>
+      <h2>Your First <span class="hl y">Paid</span> Mobile App</h2>
+      <p class="lead">One complete path: choosing who to serve, building a small paid app with Flutter + Firebase and AI, publishing on Google Play and the App Store, and running it alongside your job.</p>
+      <div class="chapters">
+        <div class="stage">Find &amp; validate</div>
+        <div class="chap"><span class="ck">✓</span>Find people before choosing features</div>
+        <div class="chap"><span class="ck">✓</span>Validate before coding</div>
+        <div class="chap"><span class="ck">✓</span>Decide how the app could earn</div>
+        <div class="chap"><span class="ck">✓</span>Define an MVP you can finish</div>
+        <div class="stage">Build with AI</div>
+        <div class="chap"><span class="ck">✓</span>Design and build the app with AI</div>
+        <div class="chap"><span class="ck">✓</span>Payments, analytics &amp; protection</div>
+        <div class="stage">Launch &amp; grow</div>
+        <div class="chap"><span class="ck">✓</span>Publish on Google Play &amp; App Store</div>
+        <div class="chap"><span class="ck">✓</span>Find your first users</div>
+        <div class="chap"><span class="ck">✓</span>Improve sales and retention</div>
+        <div class="chap"><span class="ck">✓</span>Operate alongside your job</div>
+      </div>
+      <div class="pack">
+        <span class="pill">📄 15 chapters · 90 pages</span>
+        <span class="pill">📝 Worksheets</span>
+        <span class="pill">🤖 Prompt pack</span>
+        <span class="pill">✅ Checklists</span>
+        <span class="pill">💻 Sample Flutter + Firebase project</span>
+      </div>
+      <div class="honest">
+        <div class="hand">honest note</div>
+        This guide doesn't promise income, customers or a launch date. It helps you find out early whether an idea is worth your evenings — and avoid building features nobody pays for.
+      </div>
+      <div class="ctas" style="align-items:center">
+        <span class="price" id="price" hidden></span>
+        <a class="btn btn-red" id="buy" href="#">Get the guide →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resources">
+  <div class="wrap">
+    <div class="kicker hand">more free stuff</div>
+    <h2>Free <span class="hl b">resources</span></h2>
+    <p class="lead">Guides I've shared with my Instagram followers, organised by where you are.</p>
+    <div class="folders">
+      <div class="folder"><span class="num" style="background:var(--yellow)">01</span><h3>Start here</h3>
+        <ul><li>Build Your First App — 2026 Roadmap</li><li>App vs Web</li><li>12-Week Flutter Path</li></ul></div>
+      <div class="folder"><span class="num" style="background:var(--pink)">02</span><h3>Build with AI</h3>
+        <ul><li>AI Prompt Pack</li><li>AI App Cleanup Checklist</li><li>App promo video with AI</li></ul></div>
+      <div class="folder"><span class="num" style="background:var(--green)">03</span><h3>Launch &amp; fix</h3>
+        <ul><li>Android 16KB Page Size</li><li>ParkPulse Build Breakdown</li></ul></div>
+    </div>
+    <div style="margin-top:28px"><a class="btn btn-ghost" id="resources-link" href="https://drive.google.com/drive/folders/1od-DwWurt6shYZ0Sa1ZuKuLjvWyqWJLs" target="_blank" rel="noopener">Open all free resources ↗</a></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <img src="assets/shyju.jpg" alt="Shyju M">
+    <div>
+      <div class="kicker hand">hi, I'm Shyju</div>
+      <h2>A developer who builds apps <span class="hl o">on weekends.</span></h2>
+      <p class="lead">I've spent around 11 years in mobile and backend development. Alongside my full-time job, I build and run Civil Winner, an exam-prep app for Kerala civil-engineering aspirants with 30K+ downloads. It wasn't my first app:</p>
+      <div class="apps">
+        <div class="app"><span>Daily Wallpaper</span><span class="r">didn't work out</span></div>
+        <div class="app"><span>Daily Quotes</span><span class="r">didn't work out</span></div>
+        <div class="app"><span>General quiz &amp; PSC apps</span><span class="r">didn't work out</span></div>
+        <div class="app win"><span>Civil Winner</span><span class="r" style="color:var(--ink)">kept going ✓</span></div>
+      </div>
+      <p class="lead" style="margin-top:18px">The difference: it serves one specific group of people. That's what I teach here.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="links">
+    <a href="https://www.instagram.com/shyju.tech/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://t.me/shyjutech" target="_blank" rel="noopener">Telegram</a>
+  </div>
+  © 2026 Shyju M · WeekendBuild
+</footer>
+
+<script>
+// ---- Settings: fill these in when ready ----
+const CONFIG = {
+  buyUrl: "",   // e.g. your Topmate product link
+  price:  "",   // e.g. "₹399"
+  signupEndpoint: "" // email capture (Firebase / form service) — not connected yet
+};
+
+const buy = document.getElementById("buy");
+if (CONFIG.buyUrl) { buy.href = CONFIG.buyUrl; buy.target = "_blank"; buy.rel = "noopener"; }
+else { buy.textContent = "Coming soon"; buy.removeAttribute("href"); buy.style.opacity = .6; buy.style.cursor = "default"; }
+if (CONFIG.price) { const p = document.getElementById("price"); p.textContent = CONFIG.price; p.hidden = false; }
+
+document.getElementById("signup").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const msg = document.getElementById("formmsg");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = "Please enter a valid email."; return; }
+  if (!CONFIG.signupEndpoint) { msg.textContent = "Sign-up opens soon. Meanwhile, grab the free resources below."; return; }
+  try {
+    const r = await fetch(CONFIG.signupEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+    msg.textContent = r.ok ? "Done! Check your inbox for the Starter Kit." : "Something went wrong. Please try again.";
+  } catch { msg.textContent = "Something went wrong. Please try again."; }
+});
+</script>
+</body>
+</html>
