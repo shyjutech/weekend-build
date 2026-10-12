@@ -1,4 +1,4 @@
-/* WeekendBuild — vanilla JS for the planner preview, waitlist and resource hub.
+/* Weekend Builder — vanilla JS for the planner preview, waitlist and resource hub.
    No API calls except the optional managed form endpoint below. */
 
 // ---- Settings (see SETUP.md) ------------------------------------------------

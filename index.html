@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WeekendBuild — Build your next small app alongside your job</title>
-<meta name="description" content="Free resources for working developers building a small app alongside a full-time job, plus a preview of an upcoming app planner. By Shyju M (@shyju.tech).">
+<title>Weekend Builder — Build your next small app alongside your job</title>
+<meta name="description" content="Weekend Builder: free resources for working developers building a small app alongside a full-time job, plus a preview of an upcoming app planner. By Shyju M (@shyju.tech).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
@@ -46,13 +46,16 @@ h2{font:900 clamp(34px,5vw,54px)/1.1 Poppins;letter-spacing:-1.5px;margin-bottom
 /* nav */
 nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);background:rgba(253,247,236,.8);border-bottom:1px solid rgba(0,0,0,.04)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
-.logo{font:900 22px Poppins;letter-spacing:-.5px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo{font:900 22px Poppins;letter-spacing:-.5px;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap;flex:none}
+.logo .stop{color:var(--red)}
 .logo .dot{width:34px;height:34px;border-radius:10px;background:var(--navy);color:var(--yellow);display:grid;place-items:center;font-size:18px}
 .navlinks{display:flex;gap:26px;align-items:center;font-weight:600;font-size:15px}
 .navlinks a{text-decoration:none}
 @media(max-width:760px){.navlinks a:not(.btn){display:none}}
-@media(max-width:480px){.logo{font-size:18px;gap:8px}.logo .dot{width:30px;height:30px}nav .btn-sm{font-size:13px;padding:9px 12px;white-space:nowrap}}
+@media(max-width:480px){.logo{font-size:16px;gap:7px;letter-spacing:-.3px}.logo .dot{width:28px;height:28px;font-size:15px}nav .btn-sm{font-size:12.5px;padding:9px 11px;white-space:nowrap}}
 [tabindex="-1"]:focus{outline:none}
+.lbl-short{display:none}
+@media(max-width:370px){.lbl-full{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.lbl-short{display:inline}}
 
 
 /* hero */
@@ -229,12 +232,12 @@ footer .links{display:flex;gap:18px;justify-content:center;margin-bottom:12px;fo
 
 <nav aria-label="Main">
   <div class="wrap">
-    <a class="logo" href="#top"><span class="dot" aria-hidden="true">⚡</span>WeekendBuild</a>
+    <a class="logo" href="#top" aria-label="Weekend Builder, home"><span class="dot" aria-hidden="true">⚡</span><span aria-hidden="true">weekend builder<span class="stop">.</span></span></a>
     <div class="navlinks">
       <a href="#planned">App planner</a>
       <a href="#resources">Free resources</a>
       <a href="#about">About</a>
-      <button class="btn btn-dark btn-sm" type="button" data-open-planner>Build your app idea</button>
+      <button class="btn btn-dark btn-sm" type="button" data-open-planner><span class="lbl-full">Build your app idea</span><span class="lbl-short" aria-hidden="true">Start →</span></button>
     </div>
   </div>
 </nav>
@@ -255,7 +258,7 @@ footer .links{display:flex;gap:18px;justify-content:center;margin-bottom:12px;fo
       <a class="skip-link" href="#planned">Just want to see what's coming? See the planned features →</a>
     </div>
     <div class="photo-card">
-      <div class="frame"><img src="assets/shyju.jpg" alt="Shyju M, developer and creator of WeekendBuild"></div>
+      <div class="frame"><img src="assets/shyju.jpg" alt="Shyju M, developer and creator of Weekend Builder"></div>
       <div class="sticker s1">30K+ downloads<small>on my own app</small></div>
       <div class="sticker s2">11 yrs<small>as a developer</small></div>
       <div class="sticker s3">Full-time job ✓<small>apps on weekends</small></div>
@@ -406,7 +409,7 @@ footer .links{display:flex;gap:18px;justify-content:center;margin-bottom:12px;fo
     <a href="https://www.instagram.com/shyju.tech/" target="_blank" rel="noopener">Instagram</a>
     <a href="https://t.me/shyjutech" target="_blank" rel="noopener">Telegram</a>
   </div>
-  © 2026 Shyju M · WeekendBuild
+  © 2026 Shyju M · Weekend Builder
 </footer>
 
 <!-- Planner preview: 3 questions -->

@@ -1,4 +1,4 @@
-# WeekendBuild site — setup notes
+# Weekend Builder site — setup notes
 
 Static site: `index.html` + `app.js` + `assets/` + `resources/` (free PDFs). No build step.
 
