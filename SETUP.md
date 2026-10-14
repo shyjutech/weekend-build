@@ -1,4 +1,4 @@
-# Weekend Builder site — setup notes
+# shyju.tech site — setup notes
 
 Static site: `index.html` + `app.js` + `assets/` + `resources/` (free PDFs). No build step.
 
